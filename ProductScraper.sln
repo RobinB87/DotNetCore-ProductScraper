@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductScraper.Tests.Unit",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{861A87B2-3D2C-4415-9C14-2C91624D4FEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAutomation", "MailAutomation\MailAutomation.csproj", "{E02AFAE6-7C51-44DB-8077-CB6D1D1677E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{FF4EACFE-2C7F-4AEB-9697-9049F833FD47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4EACFE-2C7F-4AEB-9697-9049F833FD47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF4EACFE-2C7F-4AEB-9697-9049F833FD47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E02AFAE6-7C51-44DB-8077-CB6D1D1677E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E02AFAE6-7C51-44DB-8077-CB6D1D1677E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E02AFAE6-7C51-44DB-8077-CB6D1D1677E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E02AFAE6-7C51-44DB-8077-CB6D1D1677E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

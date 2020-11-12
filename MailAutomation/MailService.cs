@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Net.Mail;
-using Microsoft.Extensions.Logging;
 
-namespace ProductScraper.Helpers
+namespace MailAutomation
 {
     /// <summary>
     /// Class with methods for email sending
     /// </summary>
-    public class EmailHelper
+    public class MailService : IMailService
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<MailService> _logger;
 
-        public EmailHelper(ILogger logger)
+        public MailService(ILogger<MailService> logger)
         {
             _logger = logger;
         }
@@ -41,7 +41,7 @@ namespace ProductScraper.Helpers
                 EnableSsl = true
             };
 
-            Send(smtp, emailFrom, ConfigurationManager.AppSettings["EmailTo"], subject, body);
+            Execute(smtp, emailFrom, ConfigurationManager.AppSettings["EmailTo"], subject, body);
         }
 
         /// <summary>
@@ -52,14 +52,14 @@ namespace ProductScraper.Helpers
         /// <param name="emailTo">The email recipients</param>
         /// <param name="emailSubject">The subject</param>
         /// <param name="htmlBody">The body</param>
-        private void Send(SmtpClient smtpClient, string emailFrom, string emailTo, string emailSubject, string htmlBody)
+        private void Execute(SmtpClient smtpClient, string emailFrom, string emailTo, string emailSubject, string htmlBody)
         {
             var from = new MailAddress(emailFrom);
             var message = new MailMessage
             {
-                Subject = emailSubject, 
-                Body = htmlBody, 
-                IsBodyHtml = true, 
+                Subject = emailSubject,
+                Body = htmlBody,
+                IsBodyHtml = true,
                 From = @from
             };
 
