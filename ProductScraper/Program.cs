@@ -7,6 +7,7 @@ using Repository.Data;
 using Repository.Services;
 using System;
 using System.Threading.Tasks;
+using MailAutomation;
 
 namespace ProductScraper
 {
@@ -20,6 +21,7 @@ namespace ProductScraper
                 .AddScoped<IHttpHandler, HttpClientHandler>()
                 .AddScoped<IWhiskyService, WhiskyService>()
                 .AddScoped<IUtils, Utils>()
+                .AddScoped<IMailService, MailService>()
                 .AddScoped<WhiskyContext>()
                 .BuildServiceProvider();
 
@@ -49,6 +51,7 @@ namespace ProductScraper
             var httpHandler = serviceProvider.GetService<IHttpHandler>();
             var whiskyService = serviceProvider.GetService<IWhiskyService>();
             var utils = serviceProvider.GetService<IUtils>();
+            var mailService = serviceProvider.GetService<IMailService>();
 
             // Start scraper
             logger.LogDebug("Starting scraper");
@@ -61,12 +64,14 @@ namespace ProductScraper
             var discounts = whiskyScraper.ProcessScrapedWhiskies(whiskies);
             if (discounts.Count > 0)
             {
-                var emailHelper = new EmailHelper(logger);
-                var finalBody = emailHelper.CreateEmailBody(discounts);
-                emailHelper.SendEmail(finalBody, $"Whisky discounts found!");
+                Console.WriteLine("Discounts found! Watch your mail!!");
+
+                var finalBody = mailService.CreateEmailBody(discounts);
+                mailService.SendEmail(finalBody, $"Whisky discounts found!");
             }
 
             logger.LogDebug("All done!");
+            Console.ReadKey();
         }
     }
 }
